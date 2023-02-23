@@ -309,6 +309,29 @@ EOF
  popd
 }
 
+install_2fa_mail_plugin() {
+ local DW_TMP
+ DW_TMP="$(mktemp -d)"
+ pushd "${DW_TMP}"
+
+ curl https://github.com/nursoda/twofactor_email/releases/download/2.7.1/twofactor_email.tar.gz -o twofactor_email.tar.gz
+ tar xzf twofactor_email.tar.gz
+
+ rsync -au --remove-source-files --delete ./twofactor_email "${NEXTCLOUD_ROOT_PATH}/www/apps/"
+ popd # DW_TMP
+ rm -rf "${DW_TMP}"
+
+ pushd "${NEXTCLOUD_ROOT_PATH}/www/apps/twofactor_email/appinfo/"
+ # hack for php 8.2
+ sed -i '/<php/ { /max-version=\".*\"/ { s//max-version=\"8.2\"/ } }' info.xml
+ popd # twofactor_email
+}
+
+install_nextcloud_plugins() {
+ install_2fa_mail_plugin
+}
+
+
 set_systemd_timer() {
  pushd /etc/systemd/system/
  cat << EOF > ./nextcloudcron.service
@@ -347,6 +370,7 @@ set -x
 prepare_system
 prepare_db
 prepare_nextcloud
+install_nextcloud_plugins
 set_php_fpm
 set_https_certs
 set_nginx
