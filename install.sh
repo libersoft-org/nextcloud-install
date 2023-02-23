@@ -66,9 +66,9 @@ set_php_fpm() {
   /;\?upload_tmp_dir =.*/                     { s//upload_tmp_dir = \/data\/tmp/; }
   /;\?zend_extension=opcache/                 { s//zend_extension=opcache/; }
   /;\?opcache\.enable=.*/                     { s//opcache\.enable=1/; }
-  /;\?opcache\.interned_strings_buffer=.*/    { s//opcache\.interned_strings_buffer=16/; }
+  /;\?opcache\.interned_strings_buffer=.*/    { s//opcache\.interned_strings_buffer=64/; }
   /;\?opcache\.max_accelerated_files=.*/      { s//opcache\.max_accelerated_files=10000/; }
-  /;\?opcache\.memory_consumption=.*/         { s//opcache\.memory_consumption=128/; }
+  /;\?opcache\.memory_consumption=.*/         { s//opcache\.memory_consumption=256/; }
   /;\?opcache\.save_comments=.*/              { s//opcache\.save_comments=1/; }
   /;\?opcache\.revalidate_freq=.*/            { s//opcache\.revalidate_freq=1/; }
   /;\?post_max_size = .*/                     { s//post_max_size = 902400M/; }
@@ -325,6 +325,10 @@ install_2fa_mail_plugin() {
  # hack for php 8.2
  sed -i '/<php/ { /max-version=\".*\"/ { s//max-version=\"8.2\"/ } }' info.xml
  popd # twofactor_email
+
+ pushd "${NEXTCLOUD_ROOT_PATH}"
+ su -s /bin/sh -c "php -f www/occ app:enable twofactor_email" www-data
+ popd
 }
 
 install_nextcloud_plugins() {
