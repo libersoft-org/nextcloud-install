@@ -327,7 +327,7 @@ install_2fa_mail_plugin() {
  popd # twofactor_email
 
  pushd "${NEXTCLOUD_ROOT_PATH}"
- su -s /bin/sh -c "php -f www/occ app:enable twofactor_email" www-data
+ su -s /bin/sh -c "php --define apc.enable_cli=1 -f www/occ app:enable twofactor_email" www-data
  popd
 }
 
