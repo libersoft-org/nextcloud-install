@@ -314,7 +314,7 @@ install_2fa_mail_plugin() {
  DW_TMP="$(mktemp -d)"
  pushd "${DW_TMP}"
 
- curl https://github.com/nursoda/twofactor_email/releases/download/2.7.1/twofactor_email.tar.gz -o twofactor_email.tar.gz
+ curl -LJO https://github.com/nursoda/twofactor_email/releases/download/2.7.1/twofactor_email.tar.gz
  tar xzf twofactor_email.tar.gz
 
  rsync -au --remove-source-files --delete ./twofactor_email "${NEXTCLOUD_ROOT_PATH}/www/apps/"
