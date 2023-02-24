@@ -33,8 +33,8 @@ ask_all() {
  ask_input "Nextcloud db user"           NEXTCLOUD_DB_USER
  ask_input "Nextcloud db password"       NEXTCLOUD_DB_PASSWORD
  ask_input "PHP version"                 PHP_VERSION
- ask_input "Mail from address"           MAIL_FROM_ADDRESS
  ask_input "Mail sender domain"          MAIL_SENDER_DOMAIN
+ ask_input "Mail sender user (Part and ONLY that part of a email address before @ character. For example: substring user from string user@domain.org)"           MAIL_FROM_ADDRESS
  ask_input "Mail smtp host"              MAIL_SMTP_HOST
  ask_optional "Enable smtp auth?"        MAIL_SMTP_AUTH_ENABLED
  if [[ ${MAIL_SMTP_AUTH_ENABLED} -eq 1 ]]; then
