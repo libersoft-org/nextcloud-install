@@ -25,18 +25,18 @@ ask_optional() {
 }
 
 ask_all() {
- ask_input "Domain"                      DOMAIN
- ask_input "Nextcloud admin user"        NEXTCLOUD_ADMIN_USER
- ask_input "Nextcloud admin password"    NEXTCLOUD_ADMIN_PASSWORD
- ask_input "Nextcloud root path"         NEXTCLOUD_ROOT_PATH
- ask_input "Nextcloud db name"           NEXTCLOUD_DB_NAME
- ask_input "Nextcloud db user"           NEXTCLOUD_DB_USER
- ask_input "Nextcloud db password"       NEXTCLOUD_DB_PASSWORD
- ask_input "PHP version"                 PHP_VERSION
- ask_input "Mail sender domain"          MAIL_SENDER_DOMAIN
- ask_input "Mail sender user (Part and ONLY that part of a email address before @ character. For example: substring user from string user@domain.org)"           MAIL_FROM_ADDRESS
- ask_input "Mail smtp host"              MAIL_SMTP_HOST
- ask_optional "Enable smtp auth?"        MAIL_SMTP_AUTH_ENABLED
+ ask_input "Domain"                           DOMAIN
+ ask_input "Nextcloud admin user"             NEXTCLOUD_ADMIN_USER
+ ask_input "Nextcloud admin password"         NEXTCLOUD_ADMIN_PASSWORD
+ ask_input "Nextcloud root path"              NEXTCLOUD_ROOT_PATH
+ ask_input "Nextcloud db name"                NEXTCLOUD_DB_NAME
+ ask_input "Nextcloud db user"                NEXTCLOUD_DB_USER
+ ask_input "Nextcloud db password"            NEXTCLOUD_DB_PASSWORD
+ ask_input "PHP version"                      PHP_VERSION
+ ask_input "Mail sender domain"               MAIL_SENDER_DOMAIN
+ ask_input "Mail sender user (before @ sign)" MAIL_FROM_ADDRESS
+ ask_input "Mail smtp host"                   MAIL_SMTP_HOST
+ ask_optional "Enable smtp auth?"             MAIL_SMTP_AUTH_ENABLED
  if [[ ${MAIL_SMTP_AUTH_ENABLED} -eq 1 ]]; then
   ask_input "Mail smtp user"          MAIL_SMTP_USER
   ask_input "Mail smtp password"      MAIL_SMTP_PASSWORD
