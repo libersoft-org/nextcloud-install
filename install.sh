@@ -292,6 +292,7 @@ prepare_nextcloud() {
   'session_keepalive' => true,
   'filesystem_check_changes' => 1,
   'filelocking.enabled' => true,
+  'blacklisted_files' => array(),
 EOF
 
 if [[ $MAIL_SMTP_AUTH_ENABLED -eq 1 ]]; then
